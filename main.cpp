@@ -43,6 +43,7 @@ int main(){
     std::cout<<"Enter Your Characters Name: ";
     std::cin>> name;
 
+    std::string* ptr_a = &name; //pointer
 
     std::cout<<"Enter Your Characters Race\n";
     std::cout<<"Elf\n";
@@ -52,6 +53,8 @@ int main(){
     std::cout<<"Wizard\n";
     std::cout<<"Type your chosen race below: \n\n";
     std::cin>> race;
+
+    std::string* ptr_b = &race; //pointer
 
     std::for_each(race.begin(), race.end(), [](char & c) {
         c = ::tolower(c);
@@ -101,6 +104,7 @@ int main(){
         system("cls");
     }
 
+    std::string* ptr_c = &gender; //pointer
 
     //Changing the first letter to uppercase no matter user input case
     name[0] = toupper(name[0]);
@@ -122,6 +126,12 @@ int main(){
     totalHealth = health;
     maxHealth = totalHealth;
 
+    std::cout << "This is the new pointer value: "<< *ptr_a << "\n"; //print value of the variable using * operator for ptr_a
+    std::cout <<"This is the memory address of the variable: " << &name << "\n"; // obtaining and printing the memory address of the variable
+    std::cout << "This is the new pointer value: "<< *ptr_b << "\n"; //print value of the variable using * operator for ptr_b
+    std::cout <<"This is the memory address of the variable: " << &race << "\n"; // obtaining and printing the memory address of the variable
+    std::cout << "This is the new pointer value: "<< *ptr_c << "\n"; //print value of the variable using * operator for ptr_c
+    std::cout <<"This is the memory address of the variable: " << &gender << "\n"; // obtaining and printing the memory address of the variable
     Sleep(4000);
 
     HUD();
