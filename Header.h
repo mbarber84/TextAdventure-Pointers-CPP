@@ -1,7 +1,8 @@
 #pragma once
 
 #include<iostream>
-#include<windows.h>
+#include<unistd.h>
 #include<string>
 #include<algorithm>
 #include<vector>
+#include<math.h>
