@@ -23,6 +23,7 @@ void Character::characterCreation() {
     std::cout << "Enter Your Characters Name: ";
     std::cin >> name;
 
+    std::string* ptr_a = &name; //pointer
 
     std::cout << "Enter Your Characters Race\n";
     std::cout << "Elf\n";
@@ -33,6 +34,7 @@ void Character::characterCreation() {
     std::cout << "Type your chosen race below: \n\n";
     std::cin >> race;
 
+    std::string* ptr_b = &race; //pointer
 
     std::for_each(race.begin(), race.end(), [](char& c) {
         c = ::tolower(c);
@@ -70,6 +72,8 @@ void Character::characterCreation() {
     std::cin >> gender;
     system("cls");
 
+    std::string* ptr_c = &gender; //pointer
+
 
     //Character loading screen
     for (int i = 0; i <= counter; i++) {
@@ -96,6 +100,12 @@ void Character::characterCreation() {
     totalHealth = health;
     maxHealth = totalHealth;
 
+    std::cout << "This is the new pointer value: " << *ptr_a << "\n"; //print value of the variable using * operator for ptr_a
+    std::cout << "This is the memory address of the variable: " << &name << "\n"; // obtaining and printing the memory address of the variable
+    std::cout << "This is the new pointer value: " << *ptr_b << "\n"; //print value of the variable using * operator for ptr_b
+    std::cout << "This is the memory address of the variable: " << &race << "\n"; // obtaining and printing the memory address of the variable
+    std::cout << "This is the new pointer value: " << *ptr_c << "\n"; //print value of the variable using * operator for ptr_c
+    std::cout << "This is the memory address of the variable: " << &gender << "\n"; // obtaining and printing the memory address of the variable
     Sleep(4000);
 }
 
