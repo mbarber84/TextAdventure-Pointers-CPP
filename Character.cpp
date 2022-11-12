@@ -1,6 +1,7 @@
 #include "Character.h"
 
-Character::Character() {
+Character::Character()
+{
   name = " ";
   race = " ";
   gender = " ";
@@ -13,51 +14,66 @@ Character::Character() {
   maxLevel = 60;
 }
 
+// Pointer decloration and set to NULL
+std::string *ptr_a = NULL;
+std::string *ptr_b = NULL;
+std::string *ptr_c = NULL;
+
 // character creation
-void Character::characterCreation() {
+void Character::characterCreation()
+{
 
   int counter = 0;
 
-  std::cout << "Enter Your Characters Name: ";
+  std::cout << "\nEnter Your Characters Name: ";
   std::cin >> name;
-
+  std::cout << "\n";
   std::string *ptr_a = &name; // pointer
 
-  std::cout << "Enter Your Characters Race\n";
+  std::cout << "Enter Your Characters Race\n\n";
   std::cout << "Elf\n";
   std::cout << "Human\n";
   std::cout << "Dwarf\n";
   std::cout << "DarkElf\n";
-  std::cout << "Wizard\n";
-  std::cout << "Type your chosen race below: \n\n";
+  std::cout << "Wizard\n\n";
+  std::cout << "Type your chosen race: ";
   std::cin >> race;
 
   std::string *ptr_b = &race; // pointer
 
   // Changes the entered string to lower case
-  std::for_each(race.begin(), race.end(), [](char &c) { c = ::tolower(c); });
+  std::for_each(race.begin(), race.end(), [](char &c)
+                { c = ::tolower(c); });
 
-  for (int i = 0; i < sizeof(playerRace); i++) {
-    if (race == "elf") {
+  for (int i = 0; i < sizeof(playerRace); i++)
+  {
+    if (race == "elf")
+    {
       health = 80;
       break;
     }
-    if (race == "human") {
+    if (race == "human")
+    {
       health = 85;
       break;
     }
-    if (race == "dwarf") {
+    if (race == "dwarf")
+    {
       health = 110;
       break;
     }
-    if (race == "darkelf") {
+    if (race == "darkelf")
+    {
       health = 75;
       break;
     }
-    if (race == "wizard") {
+    if (race == "wizard")
+    {
       health = 100;
       break;
-    } else {
+    }
+    else
+    {
       health = 100;
       break;
     }
@@ -73,12 +89,14 @@ void Character::characterCreation() {
   std::string *ptr_c = &gender; // pointer
 
   // Character loading screen
-  for (int i = 0; i <= counter; i++) {
+  for (int i = 0; i <= counter; i++)
+  {
     if (i == 0)
       std::cout << "Creating Character.\n";
     if (i == 1)
       std::cout << "Creating Character..\n";
-    if (i == 2) {
+    if (i == 2)
+    {
       std::cout << "Creating Character...\n";
       break;
     }
@@ -100,16 +118,16 @@ void Character::characterCreation() {
             << "\n"; // print value of the variable using * operator for ptr_a
   std::cout
       << "This is the memory address of the variable: " << &name
-      << "\n"; // obtaining and printing the memory address of the variable
+      << "\n\n"; // obtaining and printing the memory address of the variable
   std::cout << "This is the new pointer value: " << *ptr_b
             << "\n"; // print value of the variable using * operator for ptr_b
   std::cout
       << "This is the memory address of the variable: " << &race
-      << "\n"; // obtaining and printing the memory address of the variable
+      << "\n\n"; // obtaining and printing the memory address of the variable
   std::cout << "This is the new pointer value: " << *ptr_c
             << "\n"; // print value of the variable using * operator for ptr_c
   std::cout
       << "This is the memory address of the variable: " << &gender
-      << "\n"; // obtaining and printing the memory address of the variable
+      << "\n\n"; // obtaining and printing the memory address of the variable
   sleep(2);
 }

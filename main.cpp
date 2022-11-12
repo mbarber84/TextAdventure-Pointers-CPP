@@ -19,7 +19,8 @@ int counter = 0;
 
 Character character;
 
-int main() {
+int main()
+{
 
   Story();
 
@@ -33,7 +34,8 @@ int main() {
   return 0;
 }
 
-void Story() {
+void Story()
+{
 
   sleep(4);
   system("clear");
@@ -46,16 +48,18 @@ void Story() {
                "quickly turn grab your weapon and head for the exit ";
 
   std::cout << "\n\n\n";
-  std::cout << "Click enter to move forward with your adventure";
+  std::cout << "Click enter to move forward with your adventure\n";
 
   std::cin.ignore();
-  //loading screen
-  for (int i = 0; i <= counter; i++) {
+  // loading screen
+  for (int i = 0; i <= counter; i++)
+  {
     if (i == 0)
       std::cout << "Creating Character.\n";
     if (i == 1)
       std::cout << "Creating Character..\n";
-    if (i == 2) {
+    if (i == 2)
+    {
       std::cout << "Creating Character...\n";
       break;
     }
@@ -66,7 +70,8 @@ void Story() {
   }
 }
 
-void HUD() {
+void HUD()
+{
   sleep(4);
   system("clear");
   std::cout << "Name: " << character.name
@@ -78,7 +83,8 @@ void HUD() {
   Moving();
 }
 
-void CombatHUD() {
+void CombatHUD()
+{
   sleep(4);
   system("clear");
   std::cout << "Name: " << character.name
@@ -89,13 +95,15 @@ void CombatHUD() {
             << "        |       Monster Level: " << monsterLevel << std::endl;
 }
 
-void Combat() {
+void Combat()
+{
   CombatHUD();
   int playerAttack;
   int playerDamage = 8 * character.level / 2;
   int monsterAttack = 6 * monsterLevel / 2;
 
-  if (character.totalHealth >= 1 && monsterHp) {
+  if (character.totalHealth >= 1 && monsterHp)
+  {
     std::cout << "\n";
     std::cout << "1. Attack\n";
     std::cout << "2. Defend\n";
@@ -104,22 +112,26 @@ void Combat() {
 
     std::cin >> playerAttack;
 
-    if (playerAttack == 1) {
+    if (playerAttack == 1)
+    {
       // Attack
       std::cout << "You swing you weapon... You did " << playerDamage
-                << " to the " << currentMonster << std::endl;
+                << "hit points of damage to the " << currentMonster
+                << std::endl;
       monsterHp = monsterHp - playerDamage;
       sleep(4);
       CombatHUD();
 
-      if (monsterHp >= 1) {
+      if (monsterHp >= 1)
+      {
         std::cout << "\n";
         std::cout << currentMonster << "is attacking!\n";
         character.totalHealth = character.totalHealth - monsterAttack;
         std::cout << "You suffered " << monsterAttack << "hp "
                   << character.totalHealth << std::endl;
 
-        if (character.totalHealth <= 0) {
+        if (character.totalHealth <= 0)
+        {
           character.totalHealth = 0;
           system("clear");
           std::cout << "You Were Killed!!! \nYou reached level: "
@@ -128,13 +140,16 @@ void Combat() {
           sleep(3);
           exit(0);
         }
-      } else if (monsterHp <= 0) {
+      }
+      else if (monsterHp <= 0)
+      {
         monsterHp = 0;
         std::cout << "\n";
         std::cout << "You have vanquished " << currentMonster
                   << " you have gained experience " << monsterXp << " xp.\n";
 
-        if (character.level != character.maxLevel) {
+        if (character.level != character.maxLevel)
+        {
           character.current_xp += monsterXp;
           LevelUp();
         }
@@ -144,19 +159,24 @@ void Combat() {
       }
       sleep(1);
       Combat();
-    } else if (playerAttack == 2) {
+    }
+    else if (playerAttack == 2)
+    {
       // Defend
       std::cout << "You Defend\n";
       int i = rand() % 100 + 1;
-      if (i >= 50) {
+      if (i >= 50)
+      {
         std::cout << "Your shield held strong\n";
-        character.heal = character.level * 10 / 2;
+        character.heal = character.level * 10 / 2 == character.maxHealth;
         std::cout << "Your confidence grows strong. You have regained "
                   << character.heal << std::endl;
         character.totalHealth += character.heal;
         sleep(1);
         Combat();
-      } else {
+      }
+      else
+      {
         std::cout << "You defense has failed\n";
         character.totalHealth -= monsterAttack;
         std::cout << "Your weakness has cost you " << monsterAttack
@@ -164,15 +184,19 @@ void Combat() {
         sleep(1);
         Combat();
       }
-
-    } else if (playerAttack == 3) {
+    }
+    else if (playerAttack == 3)
+    {
       // Retreat
       std::cout << "You sound the Retreat\n";
       int x = rand() % 100 + 1;
-      if (x >= 50) {
+      if (x >= 50)
+      {
         std::cout << "RETREAT!!!\n";
         HUD();
-      } else {
+      }
+      else
+      {
         std::cout << "Your cowardice has been punished you failed to escape\n";
         std::cout << currentMonster << " attacks you viscously\n";
         character.totalHealth -= monsterAttack + 10;
@@ -181,7 +205,9 @@ void Combat() {
         sleep(1);
         Combat();
       }
-    } else {
+    }
+    else
+    {
       std::cout << "Invalid Input Select Again Warrior\n";
       sleep(1);
       Combat();
@@ -189,7 +215,8 @@ void Combat() {
   }
 }
 
-void Moving() {
+void Moving()
+{
 
   int choice;
   std::cout << "\n\n";
@@ -200,10 +227,12 @@ void Moving() {
 
   std::cin >> choice;
 
-  if (choice == 1) {
+  if (choice == 1)
+  {
     int temp = rand() % 100 + 1;
     std::cout << "You being moving forward...\n";
-    if (temp >= 50) {
+    if (temp >= 50)
+    {
       // Encounter Monster
       CreateMonster();
       std::string tempName = monsterName[rand() % currentMonsterNames];
@@ -215,9 +244,12 @@ void Moving() {
     std::cout << "You find nothing! Dare to carry on?";
     sleep(1);
     HUD();
-  } else if (choice == 2) {
+  }
+  else if (choice == 2)
+  {
     std::cout << "You step up camp, eat and sleep to rest\n";
-    if (character.totalHealth <= 99) {
+    if (character.totalHealth <= 99)
+    {
       character.totalHealth += 10 * character.level;
     }
     std::cout
@@ -225,10 +257,13 @@ void Moving() {
         << character.totalHealth << std::endl;
     sleep(1);
     HUD();
-  } else if (choice == 3) {
+  }
+  else if (choice == 3)
+  {
     int temp = rand() % 100 + 1;
     std::cout << "You being running away...\n";
-    if (temp >= 50) {
+    if (temp >= 50)
+    {
       // Encounter Monster
       CreateMonster();
       std::string tempName = monsterName[rand() % currentMonsterNames];
@@ -240,26 +275,32 @@ void Moving() {
     std::cout << "You find nothing! Dare to carry on?";
     sleep(1);
     HUD();
-
-  } else {
+  }
+  else
+  {
     std::cout << "Invalid Input Select Again Warrior\n";
     sleep(1);
     Moving();
   }
 }
 
-void LevelUp() {
+void LevelUp()
+{
 
-  if (character.current_xp >= character.xp_to_level) {
+  if (character.current_xp >= character.xp_to_level)
+  {
     character.xp_to_level +=
         floor(character.level + 25 * pow(2, character.level / 7));
     character.totalHealth =
         floor(character.totalHealth + 13 * pow(2, character.level / 8));
 
     if (character.level >= character.minLevel &&
-        character.level <= character.maxLevel) {
+        character.level <= character.maxLevel)
+    {
       character.level++;
-    } else {
+    }
+    else
+    {
       character.level = 60;
     }
 
@@ -279,7 +320,8 @@ void LevelUp() {
   HUD();
 }
 
-void CreateMonster() {
+void CreateMonster()
+{
   monsterHp = 30;
   monsterLevel = (rand() % 3) + character.level;
 
